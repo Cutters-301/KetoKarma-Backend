@@ -8,6 +8,9 @@ const MONGO_DB_URL =process.env.MONGO_DB_URL;
 const {yourDietPlan} = require('./controllers/plan.controller');
 const {seedUserData} = require('./models/plan.model');
 
+const {bookAppoint, createAppoint} = require('./controllers/appoint.controller');
+const {seedUserAppoint} = require('./models/appoint.model');
+
 const {seedRecipeData} = require('./models/recipe');
 const {getRecipes}=require('./controller/recipe-controller')
 mongoose.connect('mongodb://omaimah:0000@cluster0-shard-00-00.rzey7.mongodb.net:27017,cluster0-shard-00-01.rzey7.mongodb.net:27017,cluster0-shard-00-02.rzey7.mongodb.net:27017/recipe?ssl=true&replicaSet=atlas-nc0ndg-shard-0&authSource=admin&retryWrites=true&w=majority', { useNewUrlParser: true ,useUnifiedTopology: true });
@@ -17,6 +20,8 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect(`${MONGO_DB_URL}/plan`, { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect(`${MONGO_DB_URL}/appoints`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.get('/', // our endpoint name
  function (req, res) { // callback function of what we should do with our request
@@ -28,10 +33,15 @@ seedUserData();
 app.get('/plan',yourDietPlan);
 
 
- seedRecipeData();
+seedRecipeData();
 
 app.get('/recipes',getRecipes);
 
+
+seedUserAppoint();
+
+app.get('/appoints', bookAppoint);
+app.post('/appoint', createAppoint);
 
 app.listen(PORT, () => {
 
