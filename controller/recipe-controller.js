@@ -5,28 +5,40 @@ const { response } = require('express');
 
 
 
-const getRecipes = async(request, response )=>{
+const getRecipes =  (request, response )=>{
 
     const recipe='mango'
     const mealType='Lunch'
-    // const queryParams = {
-    //     params: {
-    //         recipe: recipe,
-    //         mealType: mealType
-    //     }
-    //   };
+    const queryParams = {
+        params: {
+            app_id: 'ee24950e',
+            recipe: recipe,
+            mealType: mealType,
+            app_key: '73c472644b670086c57734e05cd20b05',
+            from: '0',
+            to: '7',
+            calories: '591-722',
 
-    const api_url=`https://api.edamam.com/search?q=${recipe}&app_id=ee24950e&app_key=73c472644b670086c57734e05cd20b05&from=0&to=7&calories=591-722&mealType=${mealType}`
+
+        }
+      };
     // const { recipe, mealType } = request.query
     
-    const allRecipes=await axios.get(api_url)
-    // .then(response=>response.send()
+    //  const api_url=`https://api.edamam.com/search`
+    //  const link = (api_url, queryParams)
+        
+    // const allRecipes =  axios.get(link)
+    // .then(response => {response.send()}
     // )
-    // .catch(response,err){
-
-    //     console.log(err);
-    // }
-    return allRecipes.data
+    // .catch((response,erorr)=>{
+    //     response.send(error)
+    // })
+     
+    
+    // const json= allRecipes.data.json();
+//   response.json(allRecipes.data);
+// console.log(allRecipes.data);
+    // response.json(allRecipes.data);
     
 }
 
@@ -44,4 +56,4 @@ const getRecipes = async(request, response )=>{
 //         }
 //     });
 // }
-module.exports = {getRecipes}
+// module.exports = {getRecipes}
