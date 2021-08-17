@@ -28,7 +28,7 @@ seedUserData();
 app.get('/plan',yourDietPlan);
 
 
- seedRecipeData();
+seedRecipeData();
 
 app.get('/recipes',getRecipes);
 
