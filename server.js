@@ -5,7 +5,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const PORT = process.env.PORT 
 const MONGO_DB_URL =process.env.MONGO_DB_URL;
-const {yourDietPlan} = require('./controllers/plan.controller');
+const {yourDietPlan, deletePlan, updatePlan} = require('./controllers/plan.controller');
+const{createPlan}=require('./controllers/plan.controller');
 const {seedUserData} = require('./models/plan.model');
 
 const {seedRecipeData} = require('./models/recipe');
@@ -26,6 +27,9 @@ app.get('/', // our endpoint name
 
 seedUserData();
 app.get('/plan',yourDietPlan);
+app.post('/plans',createPlan);
+app.delete('/plans/:plan_id',deletePlan);
+app.put('/plans/:plan_id',updatePlan);
 
 
  seedRecipeData();
