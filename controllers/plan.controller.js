@@ -4,7 +4,6 @@ const { userModel } = require('../models/plan.model');
 
 const yourDietPlan = (request, response) => {
   const { email } = request.query;
-  console.log(request.query.email, 'hi');
   userModel.find({ ownerEmail: email }, (error, user) => {
     if (error) {
       response.send(error);
@@ -37,7 +36,7 @@ const createPlan = (req, res) => {
 
 const deletePlan = (req, res) => {
   const id = req.params.plan_id;
-  // console.log(id);
+  
 
   userModel.deleteOne({ _id: id }, (error, plan) => {
     res.json(plan.deletedCount);

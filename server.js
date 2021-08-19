@@ -9,10 +9,6 @@ const {yourDietPlan, deletePlan, updatePlan} = require('./controllers/plan.contr
 const{createPlan}=require('./controllers/plan.controller');
 const {seedUserData} = require('./models/plan.model');
 
-const {seedRecipeData} = require('./models/recipe');
-const {getRecipes}=require('./controller/recipe-controller')
-mongoose.connect('mongodb://omaimah:0000@cluster0-shard-00-00.rzey7.mongodb.net:27017,cluster0-shard-00-01.rzey7.mongodb.net:27017,cluster0-shard-00-02.rzey7.mongodb.net:27017/recipe?ssl=true&replicaSet=atlas-nc0ndg-shard-0&authSource=admin&retryWrites=true&w=majority', { useNewUrlParser: true ,useUnifiedTopology: true });
-// mongoose.connect("mongodb://localhost:27017/recipes", { useNewUrlParser: true,useUnifiedTopology: true });
 
 app.use(cors());
 app.use(express.json());
@@ -32,9 +28,7 @@ app.delete('/plans/:plan_id',deletePlan);
 app.put('/plans/:plan_id',updatePlan);
 
 
-seedRecipeData();
 
-app.get('/recipes',getRecipes);
 
 
 app.listen(PORT, () => {
