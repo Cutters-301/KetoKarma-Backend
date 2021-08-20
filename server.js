@@ -21,7 +21,7 @@ app.get('/', // our endpoint name
 })
 
 
-seedUserData();
+// seedUserData();
 app.get('/plan',yourDietPlan);
 app.post('/plans',createPlan);
 app.delete('/plans/:plan_id',deletePlan);
